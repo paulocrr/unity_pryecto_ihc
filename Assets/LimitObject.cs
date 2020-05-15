@@ -20,9 +20,28 @@ public class LimitObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!markerId.Equals("Power"))
+        if (markerId.Equals("Power") && (other.gameObject.CompareTag("fire") || other.gameObject.CompareTag("water") || other.gameObject.CompareTag("rock")))
+        {
+            Destroy(other.gameObject);
+        }
+
+        if (!markerId.Equals("water"))
         {
             if (other.gameObject.CompareTag(objectTag) && other.gameObject.GetComponent<Enemy>().markerId.Equals(markerId)&& other.gameObject.name!="Wall")
+            {
+                Destroy(other.gameObject);
+            }
+        }
+        if (!markerId.Equals("fire"))
+        {
+            if (other.gameObject.CompareTag(objectTag) && other.gameObject.GetComponent<Enemy>().markerId.Equals(markerId) && other.gameObject.name != "Wall")
+            {
+                Destroy(other.gameObject);
+            }
+        }
+        if (!markerId.Equals("rock"))
+        {
+            if (other.gameObject.CompareTag(objectTag) && other.gameObject.GetComponent<Enemy>().markerId.Equals(markerId) && other.gameObject.name != "Wall")
             {
                 Destroy(other.gameObject);
             }

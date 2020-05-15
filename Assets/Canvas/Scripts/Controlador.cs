@@ -17,6 +17,7 @@ public class Controlador : MonoBehaviour
     public GameObject PanelMenu;
     public GameObject PanelJugar;
     public GameObject PanelManual;
+    public GameObject Calibrar;
 
 
     // Start is called before the first frame update
@@ -26,6 +27,8 @@ public class Controlador : MonoBehaviour
         actions.Add("Manual", BotonManual);
         actions.Add("Salir", BotonSalir);
         actions.Add("Menu", BotonMenu);
+        actions.Add("Calibrar", BotonCalibrar);
+        actions.Add("Empezar", BotonEmpezar);
 
 
 
@@ -45,23 +48,42 @@ public class Controlador : MonoBehaviour
         PanelManual.SetActive(true);
         PanelJugar.SetActive(false);
         PanelMenu.SetActive(false);
+        Calibrar.SetActive(false);
     }
     public void BotonJugar()
     {
         PanelManual.SetActive(false);
         PanelJugar.SetActive(true);
         PanelMenu.SetActive(false);
+        Calibrar.SetActive(false);
     }
     public void BotonMenu()
     {
         PanelManual.SetActive(false);
         PanelJugar.SetActive(false);
         PanelMenu.SetActive(true);
+        Calibrar.SetActive(false);
+    }
+
+    public void BotonCalibrar()
+    {
+        Calibrar.SetActive(true);
+        PanelManual.SetActive(false);
+        PanelJugar.SetActive(true);
+        PanelMenu.SetActive(false);
+    }
+    public void BotonEmpezar() {
+        Calibrar.SetActive(false);
     }
     public void BotonSalir()
     {
-        print("salir");
+#if UNITY_EDITOR
+         // Application.Quit() does not work in the editor so
+         // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
+         UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 
 }

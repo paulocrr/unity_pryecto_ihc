@@ -8,14 +8,21 @@ public class GenerateRandomEnemy : DefaultTrackableEventHandler
     public GameObject renderReference;
     private ArrayList enemiesOnScreen = new ArrayList();
     public GameObject wallLimit;
+    
+    
     protected override void OnTrackingFound()
     {
+        DeleteEnemies();
+       
         if (mTrackableBehaviour)
         {
+            DeleteEnemies();
             wallLimit.GetComponent<Collider>().enabled = true;
             InvokeRepeating("GenerateEnemies", 3.0f, 5.0f);
             //GenerateEnemies();
         }
+        
+        
 
         if (OnTargetFound != null)
             OnTargetFound.Invoke();
@@ -27,11 +34,7 @@ public class GenerateRandomEnemy : DefaultTrackableEventHandler
         {
             wallLimit.GetComponent<Collider>().enabled = false;
 
-            foreach (Transform child in transform) {
-                if (child.gameObject.CompareTag("Enemy")) {
-                     Destroy(child.gameObject);
-                }
-            }
+            DeleteEnemies();
                 
         }
     }
@@ -46,5 +49,15 @@ public class GenerateRandomEnemy : DefaultTrackableEventHandler
 
         enemiesOnScreen.Add(enemy);
         
+    }
+
+    void DeleteEnemies() {
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.CompareTag("Enemy"))
+            {
+                Destroy(child.gameObject);
+            }
+        }
     }
 }

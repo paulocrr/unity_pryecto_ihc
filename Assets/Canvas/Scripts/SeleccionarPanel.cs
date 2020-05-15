@@ -17,6 +17,7 @@ public class SeleccionarPanel : MonoBehaviour
 
     public GameObject PanelEnemigo;
     public GameObject PanelDemo;
+    
 
 
 
@@ -82,5 +83,14 @@ public class SeleccionarPanel : MonoBehaviour
         }
     }
 
+    public void BotonCalibrar()
+    {
+        if (VisibleDemo)
+        {
+            PanelDemo.SetActive(false);
+
+            VisibleDemo = false;
+        }
+    }
 
 }
