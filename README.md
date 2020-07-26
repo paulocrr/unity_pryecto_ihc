@@ -28,5 +28,5 @@ Una ves importada la libreria de relidad aumentada ejecutar el modo juego de Uni
 
 ## Autores
 
-* **Adriana Parez** 
+* **Adriana Perez** 
 * **Paulo Rodriguez** 
